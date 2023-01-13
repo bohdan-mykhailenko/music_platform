@@ -1,17 +1,34 @@
 import { Button, Grid, TextField } from '@mui/material';
+import axios from 'axios';
+import { Router, useRouter } from 'next/router';
 import React, { useState } from 'react';
 import FileUpload from '../../components/FileUpload';
 import StepWrapper from '../../components/StepWrapper';
+import { useInput } from '../../hooks/useInput';
 import MainLayout from '../../layouts/MainLayout';
 
 const Create = () => {
   const [activeStep, setActiveStep] = useState(0)
-  const [picture, setPicture] = useState(null);
-  const [audio, setAudio] = useState(null);
+  const [picture, setPicture] = useState('');
+  const [audio, setAudio] = useState('');
+  const name = useInput('')
+  const artist = useInput('')
+  const text = useInput('')
+  const router = useRouter()
 
   const next = () => {
     if (activeStep !== 2) {
       setActiveStep((prev: number) => prev + 1)
+    } else {
+      const formData = new FormData()
+      formData.append('name', name.value)
+      formData.append('text', text.value)
+      formData.append('artist', artist.value)
+      formData.append('picture', picture)
+      formData.append('audio', audio)
+      axios.post('http://localhost:7000/tracks', formData)
+        .then(response => router.push('/tracks'))
+        .catch(error => alert(error))
     }
   }
 
@@ -24,14 +41,21 @@ const Create = () => {
       <StepWrapper activeStep={activeStep}>
         {activeStep === 0 &&
           <Grid container direction='column' style={{ padding: '20px' }}>
-            <TextField label={'Track name'} style={{ marginTop: 10 }}>
-
+            <TextField
+              {...name}
+              label={'Track name'}
+              style={{ marginTop: 10 }}>
             </TextField>
-            <TextField label={'Author'} style={{ marginTop: 10 }}>
-
+            <TextField
+              {...artist}
+              label={'Author'}
+              style={{ marginTop: 10 }}>
             </TextField>
-            <TextField label={'Lyrics'} multiline rows={3} style={{ marginTop: 10 }}>
-
+            <TextField
+              {...text}
+              label={'Lyrics'}
+              multiline rows={3}
+              style={{ marginTop: 10 }}>
             </TextField>
           </Grid>
         }

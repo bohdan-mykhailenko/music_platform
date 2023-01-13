@@ -3,16 +3,25 @@ import { Box } from '@mui/system';
 import { useRouter } from 'next/router';
 import React from 'react';
 import TrackList from '../../components/TrackList';
+import { useActions } from '../../hooks/useActions';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import MainLayout from '../../layouts/MainLayout';
+import { NextThunkDispatch, wrapper } from '../../store';
+import { fetchTracks } from '../../store/action-creators/tracks';
 import { ITrack } from '../../types/track';
 
 const Index = () => {
   const router = useRouter()
-  const tracks: ITrack[] = [
-    { _id: '1', name: 'Track1', artist: 'A1', text: 'Text1', listens: '5', audio: 'http://localhost:7000/audio/98b16e9d-9ef8-4845-96cb-2fde32641ee6.mp3', picture: 'http://localhost:7000/image/c1f368bb-5c8b-4ff6-bbdb-22356bed8436.png', comments: [] },
-    { _id: '2', name: 'Track3', artist: 'A1', text: 'Text2', listens: '5', audio: 'http://localhost:7000/audio/98b16e9d-9ef8-4845-96cb-2fde32641ee6.mp3', picture: 'http://localhost:7000/image/c1f368bb-5c8b-4ff6-bbdb-22356bed8436.png', comments: [] },
-    { _id: '3', name: 'Track3', artist: 'A1', text: 'Text3', listens: '5', audio: 'http://localhost:7000/audio/98b16e9d-9ef8-4845-96cb-2fde32641ee6.mp3', picture: 'http://localhost:7000/image/c1f368bb-5c8b-4ff6-bbdb-22356bed8436.png', comments: [] },
-  ]
+  const { tracks, error } = useTypedSelector(state => state.track)
+
+  if (error) {
+    return (
+      <MainLayout>
+        <h1>{error}</h1>
+      </MainLayout>
+    )
+  }
+
   return (
     <MainLayout>
       <Grid container>
@@ -35,3 +44,8 @@ const Index = () => {
 };
 
 export default Index;
+
+export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
+  const dispatch = store.dispatch as NextThunkDispatch;
+  await dispatch(await fetchTracks())
+})
