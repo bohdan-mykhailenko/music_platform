@@ -5,9 +5,9 @@ const initialState: PlayerState = {
   duration: 0,
   active: null,
   volume: 50,
-  pause: true
+  pause: false,
+  isFirstPageLoad: false
 }
-
 export const playerReducer = (state = initialState, action: PlayerAction): PlayerState => {
   switch (action.type) {
     case PlayerActionTypes.PAUSE:
@@ -21,7 +21,9 @@ export const playerReducer = (state = initialState, action: PlayerAction): Playe
     case PlayerActionTypes.SET_DURATION:
       return { ...state, duration: action.payload }
     case PlayerActionTypes.SET_ACTIVE:
-      return { ...state, active: action.payload, duration: 0, currentTime: 0 }
+      return { ...state, active: action.payload, currentTime: 0 }
+    case PlayerActionTypes.SET_IS_FIRST_PAGE_LOAD:
+      return { ...state, isFirstPageLoad: action.payload }
     default:
       return state
 

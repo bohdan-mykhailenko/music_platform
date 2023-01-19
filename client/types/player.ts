@@ -6,6 +6,7 @@ export interface PlayerState {
   duration: number;
   currentTime: number;
   pause: boolean;
+  isFirstPageLoad: boolean;
 }
 
 export enum PlayerActionTypes {
@@ -15,6 +16,7 @@ export enum PlayerActionTypes {
   SET_ACTIVE = "SET_ACTIVE",
   SET_DURATION = "SET_DURATION",
   SET_CURRENT_TIME = "SET_CURRENT_TIME",
+  SET_IS_FIRST_PAGE_LOAD = "SET_IS_FIRST_PAGE_LOAD"
 }
 
 interface PlayAction {
@@ -45,10 +47,16 @@ interface SetCurrentTimeAction {
   payload: number;
 }
 
+interface SetIsFirstPageLoadAction {
+  type: PlayerActionTypes.SET_IS_FIRST_PAGE_LOAD;
+  payload: boolean
+}
+
 export type PlayerAction =
   PlayAction |
   PauseAction |
   SetVolumeAction |
   SetAciveAction |
   SetDurationAction |
-  SetCurrentTimeAction
+  SetCurrentTimeAction |
+  SetIsFirstPageLoadAction 

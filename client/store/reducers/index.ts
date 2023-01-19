@@ -9,7 +9,6 @@ export const rootReducer = combineReducers({
   track: trackReducer,
 })
 
-
 export const reducer = (state: any, action: any) => {
   if (action.type === HYDRATE) {
     const nextState = {

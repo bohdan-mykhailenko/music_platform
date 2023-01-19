@@ -24,3 +24,7 @@ export const setCurrentTime = (payload: number): PlayerAction => {
 export const setActiveTrack = (payload: ITrack): PlayerAction => {
   return { type: PlayerActionTypes.SET_ACTIVE, payload }
 }
+
+export const setIsFirstPageLoadAction = (payload: boolean): PlayerAction => {
+  return { type: PlayerActionTypes.SET_IS_FIRST_PAGE_LOAD, payload }
+}

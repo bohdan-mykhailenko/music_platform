@@ -3,10 +3,12 @@ import React from 'react';
 interface TrackProgressProps {
   left: number;
   right: number;
+  currentTime?: string;
+  duration?: string;
   onChange: (event: any) => void;
 }
 
-const TrackProgress: React.FC<TrackProgressProps> = ({ left, right, onChange }) => {
+const TrackProgress: React.FC<TrackProgressProps> = ({ left, right, onChange, currentTime, duration }) => {
   return (
     <div style={{ display: 'flex' }}>
       <input
@@ -15,7 +17,10 @@ const TrackProgress: React.FC<TrackProgressProps> = ({ left, right, onChange }) 
         max={right}
         value={left}
         onChange={onChange} />
-      <div>{left}/{right}</div>
+      <div>
+        {duration &&
+          <div>{currentTime}{'/' + duration}</div>
+        }</div>
     </div>
   );
 };

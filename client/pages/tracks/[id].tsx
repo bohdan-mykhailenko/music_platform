@@ -27,20 +27,22 @@ const TrackPage = ({ serverTrack }: { serverTrack: ITrack }) => {
   }
 
   return (
-    <MainLayout>
+    <MainLayout
+      keywords={'Music, ' + track.name + ', ' + track.artist}
+      title={'Music platform - ' + track.name + ' - ' + track.artist} >
       <Button
         variant={"outlined"}
         style={{ fontSize: 32 }}
-        onClick={() => router.push('/tracks')}
+        onClick={() => router.push('/tracks', undefined, { shallow: true })}
       >
-        К списку
+        To list
       </Button>
       <Grid container style={{ margin: '20px 0' }}>
         <img src={'http://localhost:7000/' + track.picture} width={200} height={200} />
         <div style={{ marginLeft: 30 }}>
-          <h1>Название трека - {track.name}</h1>
-          <h1>Исполнитель - {track.artist}</h1>
-          <h1>Прослушиваний - {track.listens}</h1>
+          <h1>Track name - {track.name}</h1>
+          <h1>Artist - {track.artist}</h1>
+          <h1>listens - {track.listens}</h1>
         </div>
       </Grid>
       <h1>Слова в треке</h1>
@@ -49,28 +51,28 @@ const TrackPage = ({ serverTrack }: { serverTrack: ITrack }) => {
       <Grid container>
 
         <TextField
-          label="Ваше имя"
+          label="Username"
           fullWidth
           {...username}
         />
         <TextField
-          label="Комментарий"
+          label="Comment"
           {...text}
           fullWidth
           multiline
           rows={4}
         />
-        <Button onClick={addComment}>Отправить</Button>
+        <Button onClick={addComment}>Send</Button>
       </Grid>
       <div>
         {track.comments.map(comment =>
           <div key={comment._id}>
-            <div>Автор - {comment.username}</div>
-            <div>Комментарий - {comment.text}</div>
+            <div>Username - {comment.username}</div>
+            <div>Comment - {comment.text}</div>
           </div>
         )}
       </div>
-    </MainLayout>
+    </MainLayout >
   );
 };
 
