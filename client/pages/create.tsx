@@ -2,10 +2,12 @@ import { Button, Grid, TextField } from '@mui/material';
 import axios from 'axios';
 import { Router, useRouter } from 'next/router';
 import React, { useState } from 'react';
-import FileUpload from '../../components/FileUpload';
-import StepWrapper from '../../components/StepWrapper';
-import { useInput } from '../../hooks/useInput';
-import MainLayout from '../../layouts/MainLayout';
+import FileUpload from '../components/FileUpload';
+import StepWrapper from '../components/StepWrapper';
+import { useActions } from '../hooks/useActions';
+import { useInput } from '../hooks/useInput';
+import { useTypedSelector } from '../hooks/useTypedSelector';
+import MainLayout from '../layouts/MainLayout';
 
 const Create = () => {
   const [activeStep, setActiveStep] = useState(0)
@@ -15,6 +17,8 @@ const Create = () => {
   const artist = useInput('')
   const text = useInput('')
   const router = useRouter()
+  const { pauseTrack, playTrack } = useActions()
+  const { pause } = useTypedSelector(state => state.player)
 
   const next = () => {
     if (activeStep !== 2) {
@@ -27,7 +31,11 @@ const Create = () => {
       formData.append('picture', picture)
       formData.append('audio', audio)
       axios.post('http://localhost:7000/tracks', formData)
-        .then(response => router.push('/tracks'))
+        .then(response => {
+          router.push('/')
+
+          playTrack()
+        })
         .catch(error => alert(error))
     }
   }

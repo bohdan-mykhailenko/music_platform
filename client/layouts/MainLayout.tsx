@@ -1,8 +1,9 @@
 import { Container } from '@mui/system';
 import Head from 'next/head';
 import React from 'react';
-import Navbar from '../components/Navbar';
 import Player from '../components/Player';
+import styles from '../styles/MainLayout.module.scss'
+import { Grid, IconButton } from '@mui/material';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -23,10 +24,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, title, description, k
         <meta name='keywords' content={keywords || 'Music, tracks, artists'} />
         <meta name='viewport' content={'width=device-width, initial-scale=1'} />
       </Head>
-      <Navbar />
-      <Container style={{ margin: '90px 0' }}>
+      <Grid className={styles.container}>
         {children}
-      </Container>
+      </Grid>
       <Player />
     </>
   );

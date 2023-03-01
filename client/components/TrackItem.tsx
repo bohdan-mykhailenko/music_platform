@@ -1,5 +1,5 @@
 import { Card, IconButton, Grid } from '@mui/material';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { ITrack } from '../types/track';
 import styles from '../styles/TrackItem.module.scss'
 import { Delete, Pause, PlayArrow } from '@mui/icons-material';
@@ -15,9 +15,11 @@ interface TrackItemProps {
 
 const TrackItem: React.FC<TrackItemProps> = ({ track }) => {
   const router = useRouter()
-  const { setIsFirstPageLoadAction, playTrack, pauseTrack, setActiveTrack } = useActions();
-  const { isFirstPageLoad, pause, volume, duration, active, currentTime } = useTypedSelector(state => state.player)
+  const { setIsFirstPageLoadAction, playTrack, pauseTrack, setActiveTrack, setDuration } = useActions();
+  const { isFirstPageLoad, pause, duration, active } = useTypedSelector(state => state.player)
   const { tracks, error } = useTypedSelector(state => state.track)
+  const src = 'http://localhost:7000/' + track.picture
+
 
   useEffect(() => {
     if (active) {
@@ -26,24 +28,19 @@ const TrackItem: React.FC<TrackItemProps> = ({ track }) => {
       } else {
         pauseTrack()
       }
-      setActiveTrack(active);
-      check()
+
+      setActiveTrack(active)
+      setDuration(duration)
+      checkIsFirstPageLoadAction()
+
     } else {
       setIsFirstPageLoadAction(false)
     }
+
   }, [])
 
-  // useEffect(() => {
-  //   console.log(pause)
-  //   if (active === track) {
-  //     console.log(active)
-  //     console.log("AAAA")
-  //     console.log(track)
-  //   }
-  // }, [pause])
 
-
-  const check = () => {
+  const checkIsFirstPageLoadAction = () => {
     tracks.map((trackItem) => {
       if (trackItem._id == active?._id && trackItem._id == track._id) {
         setIsFirstPageLoadAction(true)
@@ -72,34 +69,31 @@ const TrackItem: React.FC<TrackItemProps> = ({ track }) => {
 
   return (
     <Card className={styles.track} onClick={() => {
-      router.push('/tracks/' + track._id, undefined, { shallow: true });
+      router.push('/' + track._id, undefined, { shallow: true });
     }}>
-      <IconButton onClick={play} style={{ padding: '50px' }}>
+      <IconButton className={styles.icon} onClick={play} style={{ padding: '50px' }}>
         {active === track || (isFirstPageLoad && track._id == active?._id)
           ? <div>
             {pause
-              ? <Pause />
-              : <PlayArrow />
+              ? <Pause fontSize='large' />
+              : <PlayArrow fontSize='large' />
             }
           </div>
           : <div>
-            <PlayArrow />
+            <PlayArrow fontSize='large' />
           </div>
         }
       </IconButton >
-      <img width={70} height={70} src={'http://localhost:7000/' + track.picture} />
-      <Grid container direction='column' style={{ width: 200, margin: '0 20px' }}>
-        <div>{track.name}</div>
-        <div style={{ fontSize: 12, color: 'gray' }}>{track.artist}</div>
+      <Image className={styles.image} width={100} height={100} loader={() => src} src={src} alt="track image" />
+      <Grid className={styles.info} container direction='column' >
+        <div className={styles.name}>{track.name}</div>
+        <div className={styles.artist} >{track.artist}</div>
       </Grid>
-      <IconButton style={{ marginLeft: 'auto' }} onClick={event => event.stopPropagation()} >
+      {/* <IconButton style={{ marginLeft: 'auto' }} onClick={event => event.stopPropagation()} >
         <Delete />
-      </IconButton>
+      </IconButton> */}
     </Card >
   );
 };
 
 export default TrackItem;
-
-
-//2:02:41

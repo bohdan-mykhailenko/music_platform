@@ -1,31 +1,49 @@
-import React from 'react';
-import Navbar from '../components/Navbar';
+import { Button, Card, Grid, TextField } from '@mui/material';
+import { Box } from '@mui/system';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import Download from '../components/Download';
+import Search from '../components/Search';
+import Logo from '../components/Logo';
+import TrackList from '../components/TrackList';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 import MainLayout from '../layouts/MainLayout';
-
+import { NextThunkDispatch, wrapper } from '../store';
+import { fetchTracks, searchTracks } from '../store/action-creators/tracks';
+import styles from '../styles/Index.module.scss'
 const Index = () => {
-  return (
-    <>
+  const { tracks, error } = useTypedSelector(state => state.track)
+
+  if (error) {
+    return (
       <MainLayout>
-        <div className='center'>
-          <h1>Welcome</h1>
-          <h3>You can find the best tracks here!</h3>
-        </div>
+        <h1>{error}</h1>
       </MainLayout>
+    )
+  }
 
-      <style jsx>
-        {`
-        .center {
-          margin-top: 150px;
-          flex-direction: column;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        `}
-      </style>
-    </>
+  return (
+    <MainLayout title={'Track list - music platform'} >
+      <Grid
+        container
+        className={styles.mainWrapper}>
+        <Logo />
+        <Grid
+          container
+          className={styles.wrapper}>
+          <Search />
+          <Download />
+        </Grid>
+        <TrackList tracks={tracks} />
+      </Grid>
+    </MainLayout>
   );
 };
 
 export default Index;
+
+export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
+  const dispatch = store.dispatch as NextThunkDispatch;
+  await dispatch(fetchTracks())
+})

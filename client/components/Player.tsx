@@ -10,8 +10,6 @@ import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 
 let audio: HTMLAudioElement;
 
-//duration == 00 when return to list
-
 const Player = () => {
   const { tracks, error } = useTypedSelector(state => state.track)
   const { pause, volume, active, duration, currentTime } = useTypedSelector(state => state.player)
@@ -36,6 +34,8 @@ const Player = () => {
         pauseAudio()
       }
     }
+
+    console.log(pause)
   }, [pause])
 
   useEffect(() => {
@@ -46,8 +46,8 @@ const Player = () => {
         pauseTrack()
       }
     }
-  }, [])
 
+  }, [])
 
   const setAudio = () => {
     if (active) {
@@ -134,7 +134,7 @@ const Player = () => {
           } else {
             setActiveTrack(tracks[0])
           }
-        }, 150);
+        }, 300);
 
         return
       }
@@ -152,7 +152,7 @@ const Player = () => {
           } else {
             setActiveTrack(tracks[tracks.length - 1])
           }
-        }, 150);
+        }, 300);
 
         return
       }

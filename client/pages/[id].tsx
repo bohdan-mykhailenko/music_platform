@@ -3,9 +3,9 @@ import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { useInput } from '../../hooks/useInput';
-import MainLayout from '../../layouts/MainLayout';
-import { ITrack } from '../../types/track';
+import { useInput } from '../hooks/useInput';
+import MainLayout from '../layouts/MainLayout';
+import { ITrack } from '../types/track';
 
 const TrackPage = ({ serverTrack }: { serverTrack: ITrack }) => {
   const [track, setTrack] = useState<ITrack>(serverTrack)
@@ -33,7 +33,7 @@ const TrackPage = ({ serverTrack }: { serverTrack: ITrack }) => {
       <Button
         variant={"outlined"}
         style={{ fontSize: 32 }}
-        onClick={() => router.push('/tracks', undefined, { shallow: true })}
+        onClick={() => router.push('/', undefined, { shallow: true })}
       >
         To list
       </Button>
