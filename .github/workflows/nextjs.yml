@@ -45,7 +45,6 @@ jobs:
             exit 0
           else
             echo "manager=npm" >> $GITHUB_OUTPUT
-          exit 1
           fi
       - name: Setup Node
         uses: actions/setup-node@v3
