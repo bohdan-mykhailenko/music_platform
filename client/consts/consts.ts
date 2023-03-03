@@ -1,0 +1,1 @@
+export const SERVER_URL = 'https://musicplatform-production.up.railway.app/'

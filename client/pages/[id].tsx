@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { useInput } from '../hooks/useInput';
 import MainLayout from '../layouts/MainLayout';
 import { ITrack } from '../types/track';
+import { SERVER_URL } from '../consts/consts';
 
 const TrackPage = ({ serverTrack }: { serverTrack: ITrack }) => {
   const [track, setTrack] = useState<ITrack>(serverTrack)
@@ -15,7 +16,7 @@ const TrackPage = ({ serverTrack }: { serverTrack: ITrack }) => {
 
   const addComment = async () => {
     try {
-      const response = await axios.post('http://localhost:7000/tracks/comment', {
+      const response = await axios.post(SERVER_URL + 'tracks/comment', {
         username: username.value,
         text: text.value,
         trackId: track._id
@@ -38,7 +39,7 @@ const TrackPage = ({ serverTrack }: { serverTrack: ITrack }) => {
         To list
       </Button>
       <Grid container style={{ margin: '20px 0' }}>
-        <img src={'http://localhost:7000/' + track.picture} width={200} height={200} />
+        <img src={SERVER_URL + track.picture} width={200} height={200} />
         <div style={{ marginLeft: 30 }}>
           <h1>Track name - {track.name}</h1>
           <h1>Artist - {track.artist}</h1>
@@ -79,7 +80,7 @@ const TrackPage = ({ serverTrack }: { serverTrack: ITrack }) => {
 export default TrackPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const response = await axios.get('http://localhost:7000/tracks/' + params?.id)
+  const response = await axios.get(SERVER_URL + 'tracks/' + params?.id)
   return {
     props: {
       serverTrack: response.data

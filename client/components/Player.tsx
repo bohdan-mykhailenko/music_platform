@@ -7,6 +7,7 @@ import TrackProgress from "./TrackProgress";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
+import { SERVER_URL } from '../consts/consts';
 
 let audio: HTMLAudioElement;
 
@@ -51,7 +52,7 @@ const Player = () => {
 
   const setAudio = () => {
     if (active) {
-      audio.src = 'http://localhost:7000/' + active.audio
+      audio.src = SERVER_URL + active.audio
       audio.autoplay = false
       audio.volume = volume / 100
       audio.onloadedmetadata = () => {

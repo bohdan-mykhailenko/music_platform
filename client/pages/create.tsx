@@ -8,6 +8,7 @@ import { useActions } from '../hooks/useActions';
 import { useInput } from '../hooks/useInput';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import MainLayout from '../layouts/MainLayout';
+import { SERVER_URL } from '../consts/consts';
 
 const Create = () => {
   const [activeStep, setActiveStep] = useState(0)
@@ -30,7 +31,7 @@ const Create = () => {
       formData.append('artist', artist.value)
       formData.append('picture', picture)
       formData.append('audio', audio)
-      axios.post('http://localhost:7000/tracks', formData)
+      axios.post(SERVER_URL + 'tracks', formData)
         .then(response => {
           router.push('/')
 

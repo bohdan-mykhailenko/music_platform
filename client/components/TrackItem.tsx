@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useActions } from '../hooks/useActions';
 import { useTypedSelector } from '../hooks/useTypedSelector';
+import { SERVER_URL } from '../consts/consts';
 
 interface TrackItemProps {
   track: ITrack;
@@ -18,7 +19,7 @@ const TrackItem: React.FC<TrackItemProps> = ({ track }) => {
   const { setIsFirstPageLoadAction, playTrack, pauseTrack, setActiveTrack, setDuration } = useActions();
   const { isFirstPageLoad, pause, duration, active } = useTypedSelector(state => state.player)
   const { tracks, error } = useTypedSelector(state => state.track)
-  const src = 'http://localhost:7000/' + track.picture
+  const src = SERVER_URL + track.picture
 
 
   useEffect(() => {
