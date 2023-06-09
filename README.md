@@ -1,73 +1,42 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Full Stack web-application
+## Technologies
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+ - **Server side**
+	 - TypeScript
+	 - Node.js
+	 - Nest.js
+	 - MongoDB
+	 - Postman
+ - **Client side**
+	 - TypeScript
+	 - React
+	 - Next.js
+	 - Redux
+	 - MaterialUI
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Main features
 
-## Description
+ - Listen in real time audio tracks
+	 - There is a music player with typical functions
+ - Download to the page new tracks
+	 - User can add name, img and lyrics for the track
+- Search certain track by name
+	- Page has a query field
+ - Add comment to tracks
+	 - Any user can type comment for certain track
+ 
+## Demo version(basic styles)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+**Here are screenshots of webpage view with all possible steps**
+ 1. [Main page with all tracks and active player](https://photos.app.goo.gl/PFTrk5H4HoXmx4Nu7)
+ 2. [Using of searching field(by name)](https://prnt.sc/KmWBVkTYYEuk)
+ 3. [Using of music player functions(duration, volume)](https://prnt.sc/g9IXEINUuxPH)
+ 4. Upload process
+	 1. [Type name, artist and lyrics](https://photos.app.goo.gl/Hgr7FHDu1pgftwvs6)
+	 2. [Choose track img](https://photos.app.goo.gl/nqsA4t5QcVjPYasa9)
+	 3. [Choose audio file](https://photos.app.goo.gl/zCjey3y6TxfHYyv27)
+5. [Listen new track](https://photos.app.goo.gl/mHB6EhBbC1khRsyL6)
+6. [Check for new track in server](https://photos.app.goo.gl/juqyH31Bf6ccwXuJA)
 
-## Installation
-
-```bash
-$ npm install
-```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+> Due to issues with deploying on Vercel(platform to deploy Next.js apps) because the basic free version isn't enough to work with external function(api) the page works only in local environment.
+> In the future this project will be improved and refactored to add it into my CV as a Web developer.
