@@ -1,10 +1,35 @@
+$primary-color: #EA2845;
+
 .player {
+  margin: 0;
   padding: 0 10px;
-  height: 60px;
-  width: 100%;
+
   position: fixed;
   bottom: 0;
-  display:flex;
+
+  height: 70px;
+  width: 100%;
+
+  display: flex;
   align-items:center;
-  background: #777;
+
+  background: #fff;
+  border: 3px solid $primary-color;
+  border-radius: 10px;
+
+  font-family: Roboto, sans-serif;
+}
+
+.play,
+.left,
+.right {
+  color: $primary-color;
+}
+
+.name {
+
+}
+
+.artist {
+
 }

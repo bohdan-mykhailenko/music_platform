@@ -1,1 +1,1 @@
-export const SERVER_URL = 'https://musicplatform-production.up.railway.app/'
+export const SERVER_URL = process.env.SERVER_URL || 'https://flada-music-production.up.railway.app/';

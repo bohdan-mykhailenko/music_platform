@@ -7,6 +7,7 @@ import { useInput } from '../hooks/useInput';
 import MainLayout from '../layouts/MainLayout';
 import { ITrack } from '../types/track';
 import { SERVER_URL } from '../consts/consts';
+import styles from '../styles/[id].module.scss';
 
 const TrackPage = ({ serverTrack }: { serverTrack: ITrack }) => {
   const [track, setTrack] = useState<ITrack>(serverTrack)
@@ -32,47 +33,50 @@ const TrackPage = ({ serverTrack }: { serverTrack: ITrack }) => {
       keywords={'Music, ' + track.name + ', ' + track.artist}
       title={'Music platform - ' + track.name + ' - ' + track.artist} >
       <Button
-        variant={"outlined"}
-        style={{ fontSize: 32 }}
         onClick={() => router.push('/', undefined, { shallow: true })}
+        className={styles.toList}
       >
         To list
       </Button>
-      <Grid container style={{ margin: '20px 0' }}>
+      <Grid container style={{ margin: '20px 0' }} className={styles.container}>
         <img src={SERVER_URL + track.picture} width={200} height={200} />
         <div style={{ marginLeft: 30 }}>
-          <h1>Track name - {track.name}</h1>
-          <h1>Artist - {track.artist}</h1>
-          <h1>listens - {track.listens}</h1>
+          <h2>Track name - {track.name}</h2>
+          <h2>Artist - {track.artist}</h2>
+          <h2>listens - {track.listens}</h2>
         </div>
       </Grid>
-      <h1>Слова в треке</h1>
-      <p>{track.text}</p>
-      <h1>Комментарии</h1>
-      <Grid container>
-
-        <TextField
-          label="Username"
-          fullWidth
-          {...username}
-        />
-        <TextField
-          label="Comment"
-          {...text}
-          fullWidth
-          multiline
-          rows={4}
-        />
-        <Button onClick={addComment}>Send</Button>
+      <Grid className={styles.info}>
+        <h2 className={styles.title}>Lyrics</h2>
+        <p>{track.text}</p>
+        <h2 className={styles.title}>Comments</h2>
+        <Grid container>
+          <TextField
+            className={styles.textField}
+            label="Username"
+            fullWidth
+            {...username}
+          />
+          <TextField
+            className={styles.textField}
+            label="Comment"
+            {...text}
+            fullWidth
+            multiline
+            rows={4}
+          />
+          <Button className={styles.button} onClick={addComment}>Send</Button>
+        </Grid>
       </Grid>
-      <div>
+      
+      <Grid className={styles.comments}>
         {track.comments.map(comment =>
           <div key={comment._id}>
-            <div>Username - {comment.username}</div>
-            <div>Comment - {comment.text}</div>
+            <div className={styles.username}>Username - {comment.username}</div>
+            <div className={styles.comment}>Comment - {comment.text}</div>
           </div>
         )}
-      </div>
+      </Grid>
     </MainLayout >
   );
 };

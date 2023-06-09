@@ -1,4 +1,6 @@
+import { Grid, Input } from '@mui/material';
 import React, { useRef } from 'react';
+import styles from '../styles/FileUpload.module.scss';
 
 interface FileUploadProps {
   setFile: Function;
@@ -15,8 +17,12 @@ const FileUpload: React.FC<FileUploadProps> = ({ setFile, accept, children }) =>
   }
 
   return (
-    <div onClick={() => ref.current?.click()}>
+    <Grid 
+      className={styles.wrapper}
+      onClick={() => ref.current?.click()}
+    >
       <input
+        className={styles.fileLoader}
         type='file'
         accept={accept}
         style={{ display: 'none' }}
@@ -24,7 +30,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ setFile, accept, children }) =>
         onChange={onChange}
       />
       {children}
-    </div >
+    </Grid >
   );
 };
 

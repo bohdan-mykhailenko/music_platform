@@ -9,6 +9,7 @@ import { useInput } from '../hooks/useInput';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import MainLayout from '../layouts/MainLayout';
 import { SERVER_URL } from '../consts/consts';
+import styles from '../styles/Create.module.scss';
 
 const Create = () => {
   const [activeStep, setActiveStep] = useState(0)
@@ -49,18 +50,25 @@ const Create = () => {
     <MainLayout>
       <StepWrapper activeStep={activeStep}>
         {activeStep === 0 &&
-          <Grid container direction='column' style={{ padding: '20px' }}>
+          <Grid 
+            className={styles.form}
+            container 
+            direction='column' 
+            style={{ padding: '20px' }}>
             <TextField
+              className={styles.textField}
               {...name}
               label={'Track name'}
               style={{ marginTop: 10 }}>
             </TextField>
             <TextField
+            className={styles.textField}
               {...artist}
               label={'Author'}
               style={{ marginTop: 10 }}>
             </TextField>
             <TextField
+            className={styles.textField}
               {...text}
               label={'Lyrics'}
               multiline rows={3}
@@ -73,7 +81,7 @@ const Create = () => {
             setFile={setPicture}
             accept="image/*"
           >
-            <Button>Download image</Button>
+            <Button className={styles.button}>Download image</Button>
           </FileUpload>
         }
         {activeStep === 2 &&
@@ -81,13 +89,13 @@ const Create = () => {
             setFile={setAudio}
             accept="audio/*"
           >
-            <Button>Download track</Button>
+            <Button className={styles.button}>Download track</Button>
           </FileUpload>
         }
       </StepWrapper>
       <Grid container justifyContent={'space-between'}>
-        <Button disabled={activeStep === 0} onClick={back}>Back</Button>
-        <Button onClick={next}>Next</Button>
+        <Button disabled={activeStep === 0} className={styles.button} onClick={back}>Back</Button>
+        <Button className={styles.button} onClick={next}>Next</Button>
       </Grid>
     </MainLayout>
   );

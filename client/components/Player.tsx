@@ -162,21 +162,28 @@ const Player = () => {
 
   return (
     <div className={styles.player}>
-      <IconButton onClick={previousTrack}>
+      <IconButton className={styles.left} onClick={previousTrack}>
         <ChevronLeft />
       </IconButton>
-      <IconButton onClick={play}>
+      <IconButton onClick={play} className={styles.play}>
         {pause
           ? <Pause />
           : <PlayArrow />
         }
       </IconButton>
-      <IconButton onClick={nextTrack} >
+      <IconButton className={styles.right} onClick={nextTrack} >
         <ChevronRight />
       </IconButton>
       <Grid container direction="column" style={{ width: 200, margin: '0 20px' }}>
-        <div>{active?.name}</div>
-        <div style={{ fontSize: 12, color: 'gray' }}>{active?.artist}</div>
+        <div className={styles.track}>
+          {active?.name}
+        </div>
+        <div 
+          className={styles.artist}
+          style={{ fontSize: 12, color: 'gray' }}
+        >
+          {active?.artist}
+        </div>
       </Grid>
       <TrackProgress left={currentTime} right={duration} currentTime={timeFormatToSecMin(currentTime)} duration={timeFormatToSecMin(duration)} onChange={changeCurrentTime} />
       <VolumeUp style={{ marginLeft: 'auto' }} />

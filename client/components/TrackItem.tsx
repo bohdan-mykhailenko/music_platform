@@ -69,9 +69,7 @@ const TrackItem: React.FC<TrackItemProps> = ({ track }) => {
   }
 
   return (
-    <Card className={styles.track} onClick={() => {
-      router.push('/' + track._id, undefined, { shallow: true });
-    }}>
+    <Card className={styles.track}>
       <IconButton className={styles.icon} onClick={play} style={{ padding: '50px' }}>
         {active === track || (isFirstPageLoad && track._id == active?._id)
           ? <div>
@@ -85,7 +83,13 @@ const TrackItem: React.FC<TrackItemProps> = ({ track }) => {
           </div>
         }
       </IconButton >
-      <Image className={styles.image} width={100} height={100} loader={() => src} src={src} alt="track image" />
+      <Image 
+        onClick={() => router.push('/' + track._id, undefined, { shallow: true })}
+        className={styles.image} 
+        width={100} height={100} 
+        loader={() => src} src={src} 
+        alt="track image" 
+      />
       <Grid className={styles.info} container direction='column' >
         <div className={styles.name}>{track.name}</div>
         <div className={styles.artist} >{track.artist}</div>

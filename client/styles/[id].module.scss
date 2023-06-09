@@ -1,0 +1,38 @@
+.container,
+.info,
+.comments {
+  background-color: #fff;
+  font-family: Roboto, sans-serif;
+}
+
+.textField {
+  margin-bottom: 10px;
+  border: 2px solid #EA2845;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.title {
+  font-size: 16px;
+  font-family: Roboto, sans-serif;
+}
+
+.button {
+  font-size: 20px;
+  font-family: Roboto, sans-serif;
+  color: #EA2845;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #EA2845;
+}
+
+.toList {
+  margin: 10px 0 0 0;
+  border: 1px solid #fff;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: Roboto, sans-serif;
+  background-color: #fff;
+  border-radius: 20px;
+  color:#EA2845
+}

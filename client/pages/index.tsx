@@ -11,7 +11,8 @@ import { useTypedSelector } from '../hooks/useTypedSelector';
 import MainLayout from '../layouts/MainLayout';
 import { NextThunkDispatch, wrapper } from '../store';
 import { fetchTracks, searchTracks } from '../store/action-creators/tracks';
-import styles from '../styles/Index.module.scss'
+import styles from '../styles/Index.module.scss';
+
 const Index = () => {
   const { tracks, error } = useTypedSelector(state => state.track)
 
@@ -24,7 +25,7 @@ const Index = () => {
   }
 
   return (
-    <MainLayout title={'Track list - music platform'} >
+    <MainLayout title={'Music platform'} >
       <Grid
         container
         className={styles.mainWrapper}>

@@ -1,6 +1,7 @@
 import { Card, Grid, Step, StepLabel, Stepper } from '@mui/material';
 import { Container } from '@mui/system';
 import React from 'react';
+import styles from '../styles/StepWrapper.module.scss'
 
 interface StepWrapperProps {
   activeStep: number;
@@ -11,8 +12,8 @@ const steps = ['Track info', 'Download image', 'Download track']
 
 const StepWrapper: React.FC<StepWrapperProps> = ({ activeStep, children }) => {
   return (
-    <Container>
-      <Stepper activeStep={activeStep}>
+    <Container className={styles.container}>
+      <Stepper activeStep={activeStep} className={styles.stepper}>
         {steps.map((step, index) =>
           <Step
             key={index}
